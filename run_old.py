@@ -13,7 +13,15 @@ from segment_anything import sam_model_registry
 import openxlab
 from openxlab.model import download
 openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
+import json
 
+data = {
+    "ak": "k76vxnebvv058mggrmz1",
+    "sk": "ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv"
+}
+os.system("mkdir ~/.openxlab")
+with open('~/.openxlab/config.json', 'w') as file:
+    json.dump(data, file)
 os.system("mkdir /home/xlab-app-center/pretrain_model")
 os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam-med2d_b.pth")
 os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_b_01ec64.pth")
