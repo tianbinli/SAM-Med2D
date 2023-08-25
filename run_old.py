@@ -14,20 +14,8 @@ import openxlab
 from openxlab.model import download
 try:
     openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
-except:
-    pass
-try:
-    import json
-
-    data = {
-        "ak": "k76vxnebvv058mggrmz1",
-        "sk": "ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv"
-    }
-    os.system("mkdir -p ~/.openxlab")
-    with open('~/.openxlab/config.json', 'w') as file:
-        json.dump(data, file)
-except:
-    pass
+except Exception as e:
+    traceback.print_exc()
 def download_models():
     try:
         os.system("mkdir /home/xlab-app-center/pretrain_model")
@@ -40,8 +28,8 @@ def download_models():
         download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_h.pth')
         os.system("mv /home/xlab-app-center/*.pth /home/xlab-app-center/pretrain_model/")
         os.system("mv /home/xlab-app-center/*.pt /home/xlab-app-center/pretrain_model/")
-    except:
-        pass
+    except Exception as e:
+        traceback.print_exc()
 download_models()
 
 def draw_mask(mask, draw, random_color=False):
