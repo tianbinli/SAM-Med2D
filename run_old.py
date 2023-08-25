@@ -16,23 +16,33 @@ try:
     openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
 except:
     pass
-import json
+try:
+    import json
 
-data = {
-    "ak": "k76vxnebvv058mggrmz1",
-    "sk": "ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv"
-}
-os.system("mkdir -p ~/.openxlab")
-with open('~/.openxlab/config.json', 'w') as file:
-    json.dump(data, file)
-os.system("mkdir /home/xlab-app-center/pretrain_model")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam-med2d_b.pth")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_b_01ec64.pth")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_h_4b8939.pth")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_l_0b3195.pth")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/FastSAM-x.pt")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_l.pth")
-os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_h.pth")
+    data = {
+        "ak": "k76vxnebvv058mggrmz1",
+        "sk": "ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv"
+    }
+    os.system("mkdir -p ~/.openxlab")
+    with open('~/.openxlab/config.json', 'w') as file:
+        json.dump(data, file)
+except:
+    pass
+def download_models():
+    try:
+        os.system("mkdir /home/xlab-app-center/pretrain_model")
+        download(model_repo='litianbin/SAM-Med2D', model_name='sam-med2d_b.pth')
+        download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_b_01ec64.pth')
+        download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_h_4b8939.pth')
+        download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_l_0b3195.pth')
+        download(model_repo='litianbin/SAM-Med2D', model_name='FastSAM-x.pt')
+        download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_l.pth')
+        download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_h.pth')
+        os.system("mv /home/xlab-app-center/*.pth /home/xlab-app-center/pretrain_model/")
+        os.system("mv /home/xlab-app-center/*.pt /home/xlab-app-center/pretrain_model/")
+    except:
+        pass
+download_models()
 
 def draw_mask(mask, draw, random_color=False):
     if random_color:
