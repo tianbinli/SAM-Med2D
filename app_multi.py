@@ -26,6 +26,7 @@ os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.open
 os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_l_0b3195.pth")
 os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/FastSAM-x.pt")
 os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_l.pth")
+os.system("cd /home/xlab-app-center/pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_h.pth")
 
 # points color and marker
 colors = [(255, 0, 0), (0, 255, 0)]
