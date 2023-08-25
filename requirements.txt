@@ -1,9 +1,9 @@
+-r FastSAM/requirements.txt
 albumentations
 gradio==3.40.1
 opencv-python
 chardet
 cchardet
--r FastSAM/requirements.txt
 clip
 fastsam
 segment_anything

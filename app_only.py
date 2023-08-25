@@ -1,6 +1,6 @@
 import os
 os.system("pwd && ls /home/xlab-app-center/")
-os.system("cd /home/xlab-app-center/SAM-Med2D/FastSAM/ && pip install -e . && cd ..")
+os.system("cd /home/xlab-app-center/FastSAM/ && ls FastSAM && pip install -e . && cd ..")
 import gradio as gr
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont

@@ -1,6 +1,8 @@
 import os
-os.system("pwd && ls /home/xlab-app-center/")
-os.system("cd /home/xlab-app-center/SAM-Med2D/FastSAM/ && pip install -e . && cd ..")
+import subprocess
+os.system("cd /home/xlab-app-center/FastSAM/ && ls")
+subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
+
 import gradio as gr
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -14,17 +16,16 @@ from PIL import Image, ImageDraw, ImageFont
 import os, sys
 import random
 from argparse import Namespace
-import subprocess
 from run_old import *
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
 os.system("mkdir pretrain_model")
-os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam-med2d_b.pth  && cd ..")
-os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_b_01ec64.pth  && cd ..")
-os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_h_4b8939.pth  && cd ..")
-os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_l_0b3195.pth  && cd ..")
-os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/FastSAM-x.pt  && cd ..")
-os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_l.pth  && cd ..")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam-med2d_b.pth")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_b_01ec64.pth")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_h_4b8939.pth")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_l_0b3195.pth")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/FastSAM-x.pt")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_l.pth")
 
 # points color and marker
 colors = [(255, 0, 0), (0, 255, 0)]
