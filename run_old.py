@@ -10,6 +10,20 @@ import random
 from argparse import Namespace
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
+import openxlab
+from openxlab.model import download
+openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
+
+os.system("mkdir /home/xlab-app-center/pretrain_model")
+download(model_repo='litianbin/SAM-Med2D', model_name='sam-med2d_b.pth')
+download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_b_01ec64.pth')
+download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_h_4b8939.pth')
+download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_l_0b3195.pth')
+download(model_repo='litianbin/SAM-Med2D', model_name='FastSAM-x.pt')
+download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_l.pth')
+download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_h.pth')
+os.system("mv /home/xlab-app-center/*.pth /home/xlab-app-center/pretrain_model/")
+os.system("mv /home/xlab-app-center/*.pt /home/xlab-app-center/pretrain_model/")
 
 def draw_mask(mask, draw, random_color=False):
     if random_color:
