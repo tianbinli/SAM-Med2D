@@ -6,3 +6,4 @@ cchardet
 -r FastSAM/requirements.txt
 clip
 fastsam
+segment_anything

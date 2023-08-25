@@ -1,3 +1,6 @@
+import os
+os.system("cd FastSAM/ && pip install -e . && cd ..")
+os.system("pip install -e .")
 import gradio as gr
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -11,9 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os, sys
 import random
 from argparse import Namespace
-
-os.system("cd FastSAM/ && pip install -e . && cd ..")
-os.system("pip install -e .")
+import subprocess
 from run_old import *
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
@@ -56,10 +57,6 @@ with gr.Blocks() as demo:
                 # point prompt
                 with gr.Column():
                     selected_points = gr.State([])      # store points
-                    last_mask = gr.State(None) 
-                    last_mask_ = gr.State(None) 
-                    last_mask = gr.State(None) 
-                    last_mask = gr.State(None) 
                     last_mask = gr.State(None) 
                     with gr.Row():
                         gr.Markdown('You can click on the image to select points prompt. Default: foreground_point.')
