@@ -12,7 +12,10 @@ from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
 import openxlab
 from openxlab.model import download
-openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
+try:
+    openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
+except:
+    pass
 import json
 
 data = {
