@@ -1,5 +1,8 @@
 import os
 import subprocess
+
+root_path = "/home/xlab-app-center/"
+model_pretrain_root = "/home/xlab-app-center/pretrain_model/"
 subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -12,25 +15,31 @@ from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
 import openxlab
 from openxlab.model import download
+import traceback
+import shutil
+
+model_name_dict = {
+    "sam_med2d_b": "sam-med2d_b.pth", 
+    "sam_vit_b": 'sam_vit_b_01ec64.pth', 
+    "sam_vit_h": 'sam_vit_h_4b8939.pth', 
+    "sam_vit_l": 'sam_vit_l_0b3195.pth', 
+    "fast_sam": 'FastSAM-x.pt', 
+    "sam_hq_vit_l": 'sam_hq_vit_l.pth', 
+    "sam_hq_vit_h": 'sam_hq_vit_h.pth'
+    }
 try:
     openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
 except Exception as e:
     traceback.print_exc()
-def download_models():
+def download_models(key):
     try:
-        os.system("mkdir /home/xlab-app-center/pretrain_model")
-        download(model_repo='litianbin/SAM-Med2D', model_name='sam-med2d_b.pth')
-        download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_b_01ec64.pth')
-        download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_h_4b8939.pth')
-        download(model_repo='litianbin/SAM-Med2D', model_name='sam_vit_l_0b3195.pth')
-        download(model_repo='litianbin/SAM-Med2D', model_name='FastSAM-x.pt')
-        download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_l.pth')
-        download(model_repo='litianbin/SAM-Med2D', model_name='sam_hq_vit_h.pth')
-        os.system("mv /home/xlab-app-center/*.pth /home/xlab-app-center/pretrain_model/")
-        os.system("mv /home/xlab-app-center/*.pt /home/xlab-app-center/pretrain_model/")
+        os.makedirs(model_pretrain_root, exist_ok=True)
+        model_path = model_name_dict[key]
+        if not os.path.exists(os.path.join(model_pretrain_root, model_path)):
+            download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
+            shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
     except Exception as e:
         traceback.print_exc()
-download_models()
 
 def draw_mask(mask, draw, random_color=False):
     if random_color:
@@ -72,23 +81,27 @@ class Segment_Serious_Models():
         self.sam_med2d_b_device = device1
         self.fast_sam_device=device1
 
+
+
     def get_model(self, model_name):
         if not hasattr(self, model_name):
+            download_models(model_name)
+            model_path = os.path.join(model_pretrain_root, model_name_dict[model_name])
             if model_name == "sam_med2d_b":
-                self.sam_med2d_b = load_model(256, True, "vit_b", "/home/xlab-app-center/pretrain_model/sam-med2d_b.pth", self.device1)
+                self.sam_med2d_b = load_model(256, True, "vit_b", model_path, self.device1)
             elif model_name == "sam_vit_b":
-                self.sam_vit_b = load_model(1024, False, 'vit_b', "/home/xlab-app-center/pretrain_model/sam_vit_b_01ec64.pth", self.device1)
+                self.sam_vit_b = load_model(1024, False, 'vit_b', model_path, self.device1)
             elif model_name == "sam_vit_l":
-                self.sam_vit_l = load_model(1024, False, 'vit_l', "/home/xlab-app-center/pretrain_model/sam_vit_l_0b3195.pth", self.device1)
+                self.sam_vit_l = load_model(1024, False, 'vit_l', model_path, self.device1)
             elif model_name == "sam_vit_h":
-                self.sam_vit_h = load_model(1024, False, 'vit_h', "/home/xlab-app-center/pretrain_model/sam_vit_h_0b3195.pth", self.device1)
+                self.sam_vit_h = load_model(1024, False, 'vit_h', model_path, self.device1)
             elif model_name == "fast_sam":
                 from fastsam import FastSAM, FastSAMPrompt 
-                self.fast_sam = FastSAM("/home/xlab-app-center/pretrain_model/FastSAM-x.pt")
+                self.fast_sam = FastSAM(model_path)
             elif model_name == "sam_hq_vit_l":
-                self.sam_hq_vit_l = load_model(1024, False, "vit_l", "/home/xlab-app-center/pretrain_model/sam_hq_vit_l.pth", self.device0)
+                self.sam_hq_vit_l = load_model(1024, False, "vit_l", model_path, self.device0)
             elif model_name == "sam_hq_vit_h":
-                self.sam_hq_vit_h = load_model(1024, False, "vit_h", "/home/xlab-app-center/pretrain_model/sam_hq_vit_h.pth", self.device0)
+                self.sam_hq_vit_h = load_model(1024, False, "vit_h", model_path, self.device0)
             else:
                 print("no model_name : " + str(model_name))
         else:
@@ -290,5 +303,5 @@ class Segment_Serious_Models():
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
-    
+
 
