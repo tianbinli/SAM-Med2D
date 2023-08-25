@@ -7,4 +7,3 @@ cchardet
 clip
 segment_anything
 openxlab
-json
