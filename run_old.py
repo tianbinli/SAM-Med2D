@@ -54,29 +54,24 @@ class Segment_Serious_Models():
     def get_model(self, model_name):
         if not hasattr(self, model_name):
             if model_name == "sam_med2d_b":
-                self.sam_med2d_b = load_model(256, True, "vit_b", "pretrain_model/sam-med2d_b.pth", self.device1)
+                self.sam_med2d_b = load_model(256, True, "vit_b", "/home/xlab-app-center/pretrain_model/sam-med2d_b.pth", self.device1)
             elif model_name == "sam_vit_b":
-                self.sam_vit_b = load_model(1024, False, 'vit_b', "pretrain_model/sam_vit_b_01ec64.pth", self.device1)
+                self.sam_vit_b = load_model(1024, False, 'vit_b', "/home/xlab-app-center/pretrain_model/sam_vit_b_01ec64.pth", self.device1)
             elif model_name == "sam_vit_l":
-                self.sam_vit_l = load_model(1024, False, 'vit_l', "pretrain_model/sam_vit_l_0b3195.pth", self.device1)
+                self.sam_vit_l = load_model(1024, False, 'vit_l', "/home/xlab-app-center/pretrain_model/sam_vit_l_0b3195.pth", self.device1)
             elif model_name == "sam_vit_h":
-                self.sam_vit_h = load_model(1024, False, 'vit_h', "pretrain_model/sam_vit_l_0b3195.pth", self.device1)
+                self.sam_vit_h = load_model(1024, False, 'vit_h', "/home/xlab-app-center/pretrain_model/sam_vit_h_0b3195.pth", self.device1)
             elif model_name == "fast_sam":
                 from fastsam import FastSAM, FastSAMPrompt 
-                self.fast_sam = FastSAM("pretrain_model/FastSAM-x.pt")
+                self.fast_sam = FastSAM("/home/xlab-app-center/pretrain_model/FastSAM-x.pt")
             elif model_name == "sam_hq_vit_l":
-                self.sam_hq_vit_l = load_model(1024, False, "vit_l", "pretrain_model/sam_hq_vit_l.pth", self.device0)
+                self.sam_hq_vit_l = load_model(1024, False, "vit_l", "/home/xlab-app-center/pretrain_model/sam_hq_vit_l.pth", self.device0)
             elif model_name == "sam_hq_vit_h":
-                self.sam_hq_vit_h = load_model(1024, False, "vit_h", "pretrain_model/sam_hq_vit_h.pth", self.device0)
+                self.sam_hq_vit_h = load_model(1024, False, "vit_h", "/home/xlab-app-center/pretrain_model/sam_hq_vit_h.pth", self.device0)
             else:
                 print("no model_name : " + str(model_name))
         else:
             return getattr(self, model_name)
-            
-                
-        
-        # self.sam_vit_h = load_model(1024, False, 'vit_h', "pretrain_model/sam_vit_h_4b8939.pth", device1)
-        # self.sam_hq_vit_h = load_model(1024, False, "vit_h", "pretrain_model/sam_hq_vit_h.pth", device0)
 
     def run_sammed(self, input_image, selected_points, last_mask):
         image_pil = Image.fromarray(input_image)#.convert("RGB")
