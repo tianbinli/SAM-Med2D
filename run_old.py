@@ -5,7 +5,6 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
 from scipy import ndimage
-from fastsam import FastSAM, FastSAMPrompt 
 import torch
 import random
 from argparse import Namespace
@@ -59,15 +58,16 @@ class Segment_Serious_Models():
             elif model_name == "sam_vit_b":
                 self.sam_vit_b = load_model(1024, False, 'vit_b', "pretrain_model/sam_vit_b_01ec64.pth", self.device1)
             elif model_name == "sam_vit_l":
-                self.sam_vit_l = load_model(1024, False, 'vit_l', "pretrain_model/sam_vit_l_0b3195.pth", device1)
+                self.sam_vit_l = load_model(1024, False, 'vit_l', "pretrain_model/sam_vit_l_0b3195.pth", self.device1)
             elif model_name == "sam_vit_h":
-                self.sam_vit_h = load_model(1024, False, 'vit_h', "pretrain_model/sam_vit_l_0b3195.pth", device1)
+                self.sam_vit_h = load_model(1024, False, 'vit_h', "pretrain_model/sam_vit_l_0b3195.pth", self.device1)
             elif model_name == "fast_sam":
+                from fastsam import FastSAM, FastSAMPrompt 
                 self.fast_sam = FastSAM("pretrain_model/FastSAM-x.pt")
             elif model_name == "sam_hq_vit_l":
-                self.sam_hq_vit_l = load_model(1024, False, "vit_l", "pretrain_model/sam_hq_vit_l.pth", device0)
+                self.sam_hq_vit_l = load_model(1024, False, "vit_l", "pretrain_model/sam_hq_vit_l.pth", self.device0)
             elif model_name == "sam_hq_vit_h":
-                self.sam_hq_vit_h = load_model(1024, False, "vit_h", "pretrain_model/sam_hq_vit_h.pth", device0)
+                self.sam_hq_vit_h = load_model(1024, False, "vit_h", "pretrain_model/sam_hq_vit_h.pth", self.device0)
             else:
                 print("no model_name : " + str(model_name))
         else:
