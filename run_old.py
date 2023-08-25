@@ -1,15 +1,11 @@
 import os
 import subprocess
-os.system("cd /home/xlab-app-center/FastSAM/ && ls")
 subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
 from scipy import ndimage
-try:
-    from fastsam import FastSAM, FastSAMPrompt 
-except:
-    pass
+from fastsam import FastSAM, FastSAMPrompt 
 import torch
 import random
 from argparse import Namespace
