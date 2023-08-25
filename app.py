@@ -9,12 +9,21 @@ import warnings
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
-from fastsam import FastSAM, FastSAMPrompt 
 import random
 from argparse import Namespace
+
+os.system("cd FastSAM/ && pip install -e . && cd ..")
+os.system("pip install -e .")
+from run_old import *
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
-from run_old import *
+os.system("mkdir pretrain_model")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam-med2d_b.pth  && cd ..")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_b_01ec64.pth  && cd ..")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_h_4b8939.pth  && cd ..")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_vit_l_0b3195.pth  && cd ..")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/FastSAM-x.pt  && cd ..")
+os.system("cd pretrain_model && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/sam_hq_vit_l.pth  && cd ..")
 
 # points color and marker
 colors = [(255, 0, 0), (0, 255, 0)]
@@ -160,14 +169,4 @@ with gr.Blocks() as demo:
     # .then(fn=segment_models.run_hq_sam, inputs=[original_image, selected_points], outputs=gallery_hq_sam)\
     # .then(fn=segment_models.run_sam_h, inputs=[original_image, selected_points], outputs=gallery_sam_h)\
 
-
-import socket
-start_port=5901
-while True:
-    try:
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.bind(('0.0.0.0', start_port))
-            break
-    except OSError:
-        start_port += 1
-demo.launch(debug=True, server_name='0.0.0.0', server_port=start_port)
+demo.launch()

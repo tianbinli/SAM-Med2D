@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw, ImageFont
 import os, sys
 from scipy import ndimage
 from fastsam import FastSAM, FastSAMPrompt 
- #torch.device("cuda" if torch.cuda.is_available() else "cpu")
 import torch
 import random
 from argparse import Namespace
@@ -25,11 +24,14 @@ def draw_mask(mask, draw, random_color=False):
 
 def draw_point(point, draw, r=5):
     show_point = []
-    for p in point:
-        x,y = p
-        draw.ellipse((x-r, y-r, x+r, y+r), fill='green')
+    for point, label in point:
+        x,y = point
+        if label == 1:
+            draw.ellipse((x-r, y-r, x+r, y+r), fill='green')
+        elif label == 0:
+            draw.ellipse((x-r, y-r, x+r, y+r), fill='red')
 
-def load_model(img_size, encoder_adapter, model_type, ckpt, device="cuda:0"):
+def load_model(img_size, encoder_adapter, model_type, ckpt, device="cuda"):
     args = Namespace()
     args.device = device
     args.image_size = img_size
@@ -41,18 +43,18 @@ def load_model(img_size, encoder_adapter, model_type, ckpt, device="cuda:0"):
     return predictor
 
 class Segment_Serious_Models():
-    def __init__(self, device0="cuda:0", device1="cuda:1"):
+    def __init__(self, device0="cuda", device1="cuda"):
         self.sam_med2d_b_device = device1
         self.sam_med2d_b = load_model(256, True, "vit_b", "pretrain_model/sam-med2d_b.pth", device1)
 
-        self.sam_vit_b = load_model(1024, False, 'vit_b', "pretrain_model/SAM_facebook/sam_vit_b_01ec64.pth", device1)
+        self.sam_vit_b = load_model(1024, False, 'vit_b', "pretrain_model/sam_vit_b_01ec64.pth", device1)
         self.fast_sam = FastSAM("pretrain_model/FastSAM-x.pt")
         self.fast_sam_device=device1
         
-        self.sam_vit_l = load_model(1024, False, 'vit_l', "pretrain_model/SAM_facebook/sam_vit_l_0b3195.pth", device1)
+        self.sam_vit_l = load_model(1024, False, 'vit_l', "pretrain_model/sam_vit_l_0b3195.pth", device1)
         self.sam_hq_vit_l = load_model(1024, False, "vit_l", "pretrain_model/sam_hq_vit_l.pth", device0)
-        # self.sam_vit_h = load_model(1024, False, 'vit_h', "pretrain_model/SAM_facebook/sam_vit_h_4b8939.pth", "cuda:1")
-        # self.sam_hq_vit_h = load_model(1024, False, "vit_h", "pretrain_model/sam_hq_vit_h.pth", "cuda:0")
+        # self.sam_vit_h = load_model(1024, False, 'vit_h', "pretrain_model/sam_vit_h_4b8939.pth", device1)
+        # self.sam_hq_vit_h = load_model(1024, False, "vit_h", "pretrain_model/sam_hq_vit_h.pth", device0)
 
     def run_sammed(self, input_image, selected_points, last_mask):
         image_pil = Image.fromarray(input_image)#.convert("RGB")
@@ -77,7 +79,7 @@ class Segment_Serious_Models():
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
 
-        draw_point(point_coords,image_draw)
+        draw_point(point_labels,image_draw)
 
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
@@ -218,7 +220,7 @@ class Segment_Serious_Models():
         if hasattr(self, "fast_sam_device"):
             device=self.fast_sam_device
         else:
-            device="cuda:0"
+            device="cuda"
         
         everything_results = predictor(
             image_pil,
