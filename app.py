@@ -1,8 +1,5 @@
 import os
 import subprocess
-os.system("cd /home/xlab-app-center/FastSAM/ && ls")
-subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
-
 import gradio as gr
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -16,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os, sys
 import random
 from argparse import Namespace
+import subprocess
 from run_old import *
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
@@ -68,20 +66,20 @@ with gr.Blocks() as demo:
             # show the image with mask
             gallery_sammed = gr.Gallery(
                 label="SAMMED Generated images", show_label=True, elem_id="gallery_sammed").style(preview=True, grid_cols=2,object_fit="scale-down")
-    with gr.Row():
-        with gr.Column():
-            gallery_sam_b = gr.Gallery(
-                label="SAM-B Generated images", show_label=True, elem_id="gallery_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
-        with gr.Column():
-            gallery_sam_l = gr.Gallery(
-                label="SAM-L Generated images", show_label=True, elem_id="gallery_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
-    with gr.Row():
-        with gr.Column():
-            gallery_hq_sam_l = gr.Gallery(
-                label="HQ-SAM Generated images", show_label=True, elem_id="gallery_hq_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
-        with gr.Column():
-            gallery_fast_sam = gr.Gallery(
-                label="FastSAM Generated images", show_label=True, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
+    # with gr.Row():
+    #     with gr.Column():
+    #         gallery_sam_b = gr.Gallery(
+    #             label="SAM-B Generated images", show_label=True, elem_id="gallery_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
+    #     with gr.Column():
+    #         gallery_sam_l = gr.Gallery(
+    #             label="SAM-L Generated images", show_label=True, elem_id="gallery_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
+    # with gr.Row():
+    #     with gr.Column():
+    #         gallery_hq_sam_l = gr.Gallery(
+    #             label="HQ-SAM Generated images", show_label=True, elem_id="gallery_hq_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
+    #     with gr.Column():
+    #         gallery_fast_sam = gr.Gallery(
+    #             label="FastSAM Generated images", show_label=True, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
     def process_example(img):
         return img, [], None
     
@@ -101,12 +99,6 @@ with gr.Blocks() as demo:
             # input_examples = [os.path.join(demo_image_root_path, img) for img in os.listdir(demo_image_root_path)]
             with gr.Column():
                 gr.Examples(examples=vals, label=None, inputs=[input_image], outputs=[original_image, selected_points,last_mask], fn=process_example, run_on_click=True, examples_per_page=15,)
-    # with gr.Row():
-    #     demo_image_root_path= "Dataset_Demo/images/"
-    #     input_examples = [os.path.join(demo_image_root_path, img) for img in os.listdir(demo_image_root_path)]
-    #     with gr.Column():
-    #         gr.Examples(examples=image_examples, inputs=[input_image], outputs=[original_image, selected_points,last_mask], fn=process_example, run_on_click=True)
-
 
     # once user upload an image, the original image is stored in `original_image`
     def store_img(img):
@@ -161,10 +153,10 @@ with gr.Blocks() as demo:
     # button image
     button.click(segment_models.run_sammed, inputs=[original_image, selected_points, last_mask],
                  outputs=[gallery_sammed, last_mask])\
-    .then(fn=segment_models.run_sam_b, inputs=[original_image, selected_points], outputs=gallery_sam_b)\
-    .then(fn=segment_models.run_sam_l, inputs=[original_image, selected_points], outputs=gallery_sam_l)\
-    .then(fn=segment_models.run_hq_sam_l, inputs=[original_image, selected_points], outputs=gallery_hq_sam_l)\
-    .then(fn=segment_models.run_fast_sam, inputs=[original_image, selected_points], outputs=gallery_fast_sam)\
+    # .then(fn=segment_models.run_sam_b, inputs=[original_image, selected_points], outputs=gallery_sam_b)\
+    # .then(fn=segment_models.run_sam_l, inputs=[original_image, selected_points], outputs=gallery_sam_l)\
+    # .then(fn=segment_models.run_hq_sam_l, inputs=[original_image, selected_points], outputs=gallery_hq_sam_l)\
+    # .then(fn=segment_models.run_fast_sam, inputs=[original_image, selected_points], outputs=gallery_fast_sam)\
     # .then(fn=segment_models.run_hq_sam, inputs=[original_image, selected_points], outputs=gallery_hq_sam)\
     # .then(fn=segment_models.run_sam_h, inputs=[original_image, selected_points], outputs=gallery_sam_h)\
 
