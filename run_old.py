@@ -22,7 +22,7 @@ data = {
     "ak": "k76vxnebvv058mggrmz1",
     "sk": "ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv"
 }
-os.system("mkdir ~/.openxlab")
+os.system("mkdir -p ~/.openxlab")
 with open('~/.openxlab/config.json', 'w') as file:
     json.dump(data, file)
 os.system("mkdir /home/xlab-app-center/pretrain_model")
