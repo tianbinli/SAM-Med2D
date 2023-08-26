@@ -31,10 +31,10 @@ markers = [1, 5]
 with gr.Blocks() as demo:
     with gr.Row():
         gr.Markdown(
-            '''# SAM-Med2D!🚀'''
-            # SAM-Med2D produces high quality object masks from input prompts such as points or boxes, and it can be used to generate masks for al in an image. More information can be found in [**Official Project**](https://segment-anything.com/).
-            # [![Duplicate this Space](https://huggingface.co/datasets/huggingface/badges/raw/main/duplicate-this-space-sm.svg)](https://huggingface.co/spaces/AIBoy1993/segment_anything_webui?duplicate=true)
-            # '''
+            '''# SAM-Med2D!🚀
+            SAM-Med2D is an interactive segmentation model based on the SAM model for medical scenarios, supporting multi-point interactive segmentation and box interaction. 
+            Currently, only multi-point interaction is supported in this application. More information can be found on [**GitHub**](https://github.com/uni-medical/SAM-Med2D/tree/main).
+            '''
         )
         with gr.Row():
             # select model
@@ -55,7 +55,7 @@ with gr.Blocks() as demo:
                         gr.Markdown('You can click on the image to select points prompt. Default: foreground_point.')
                         undo_button = gr.Button('Undo point')
                     radio = gr.Radio(['foreground_point', 'background_point'], label='point labels')
-                button = gr.Button("Auto!")
+                button = gr.Button("Run!")
             # show the image with mask
             gallery_sammed = gr.Gallery(
                 label="SAMMED Generated images", show_label=True, elem_id="gallery_sammed").style(preview=True, grid_cols=2,object_fit="scale-down")
@@ -126,7 +126,7 @@ with gr.Blocks() as demo:
         get_point,
         [input_image, selected_points, radio],
         [input_image],
-    )
+    ).then()
 
     # undo the selected point
     def undo_points(orig_img, sel_pix):
