@@ -57,10 +57,7 @@ model_name_dict = {
     "sam_hq_vit_l": 'sam_hq_vit_l.pth', 
     "sam_hq_vit_h": 'sam_hq_vit_h.pth'
     }
-try:
-    openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv")
-except Exception as e:
-    traceback.print_exc()
+openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv", re_login=True)
 def download_models(key):
     os.makedirs(model_pretrain_root, exist_ok=True)
     model_path = model_name_dict[key]
