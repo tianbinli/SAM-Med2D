@@ -126,7 +126,7 @@ with gr.Blocks() as demo:
         get_point,
         [input_image, selected_points, radio],
         [input_image],
-    ).then()
+    )
 
     # undo the selected point
     def undo_points(orig_img, sel_pix):
