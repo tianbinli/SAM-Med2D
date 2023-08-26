@@ -31,7 +31,7 @@ import subprocess
 root_path = "/home/xlab-app-center/"
 model_pretrain_root = "/home/xlab-app-center/pretrain_model/"
 
-subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
+# subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
 from fastsam import FastSAM, FastSAMPrompt 
 
 import numpy as np
