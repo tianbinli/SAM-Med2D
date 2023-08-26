@@ -1,5 +1,32 @@
 import os
 import subprocess
+'):
+    # 打印当前目录名称
+    print(indent + os.path.basename(folder_path) + '/')
+    
+    # 获取子目录和文件列表
+    subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
+    files = [f.name for f in os.scandir(folder_path) if f.is_file()]
+    
+    # 递归打印子目录
+    for i, subfolder in enumerate(sorted(subfolders)):
+        # 判断是否为最后一个子目录
+        if i == len(subfolders) - 1 and len(files) == 0:
+            print_tree(subfolder, indent + '  ')
+        else:
+            print_tree(subfolder, indent + '│ ')
+            
+    # 打印文件
+    for i, file in enumerate(sorted(files)):
+        # 判断是否为最后一个文件
+        if i == len(files) - 1:
+            print(indent + '└── ' + file)
+        else:
+            print(indent + '├── ' + file)
+
+# 测试程序
+folder_path = '/home/xlab-app-center/'
+print_directory(folder_path)
 
 root_path = "/home/xlab-app-center/"
 model_pretrain_root = "/home/xlab-app-center/pretrain_model/"
