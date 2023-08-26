@@ -105,36 +105,21 @@ class Segment_Serious_Models():
         self.device1 = device1
         self.sam_med2d_b_device = device1
         self.fast_sam_device=device1
+        self.sam_med2d_b = load_model(256, True, "vit_b", os.path.join(model_pretrain_root, model_name_dict["sam_med2d_b"]), self.device1)
+        self.sam_vit_b = load_model(1024, False, 'vit_b', os.path.join(model_pretrain_root, model_name_dict["sam_vit_b"]), self.device1)
+        self.sam_vit_l = load_model(1024, False, 'vit_l', os.path.join(model_pretrain_root, model_name_dict["sam_vit_l"]), self.device1)
+        # self.sam_vit_h = load_model(1024, False, 'vit_h', os.path.join(model_pretrain_root, model_name_dict["sam_vit_h"]), self.device1)
+        self.fast_sam = FastSAM(os.path.join(model_pretrain_root, model_name_dict["sam_med2d_b"]))
+        self.sam_hq_vit_l = load_model(1024, False, "vit_l", os.path.join(model_pretrain_root, model_name_dict["sam_hq_vit_l"]), self.device0)
+        # self.sam_hq_vit_h = load_model(1024, False, "vit_h", os.path.join(model_pretrain_root, model_name_dict["sam_hq_vit_h"]), self.device0)
 
 
-
-    def get_model(self, model_name):
-        if not hasattr(self, model_name):
-            model_path = os.path.join(model_pretrain_root, model_name_dict[model_name])
-            if model_name == "sam_med2d_b":
-                self.sam_med2d_b = load_model(256, True, "vit_b", model_path, self.device1)
-            elif model_name == "sam_vit_b":
-                self.sam_vit_b = load_model(1024, False, 'vit_b', model_path, self.device1)
-            elif model_name == "sam_vit_l":
-                self.sam_vit_l = load_model(1024, False, 'vit_l', model_path, self.device1)
-            elif model_name == "sam_vit_h":
-                self.sam_vit_h = load_model(1024, False, 'vit_h', model_path, self.device1)
-            elif model_name == "fast_sam":
-                self.fast_sam = FastSAM(model_path)
-            elif model_name == "sam_hq_vit_l":
-                self.sam_hq_vit_l = load_model(1024, False, "vit_l", model_path, self.device0)
-            elif model_name == "sam_hq_vit_h":
-                self.sam_hq_vit_h = load_model(1024, False, "vit_h", model_path, self.device0)
-            else:
-                print("no model_name : " + str(model_name))
-        else:
-            return getattr(self, model_name)
 
     def run_sammed(self, input_image, selected_points, last_mask):
         image_pil = Image.fromarray(input_image)#.convert("RGB")
         image = input_image
         H,W,_ = image.shape
-        predictor = self.get_model("sam_med2d_b")
+        predictor = self.sam_med2d_b
         predictor.set_image(image)
         centers = np.array([a for a,b in selected_points ])
         point_coords = centers
@@ -165,7 +150,7 @@ class Segment_Serious_Models():
         image_pil = Image.fromarray(input_image)
         image = input_image
         H,W,_ = image.shape
-        predictor = self.get_model("sam_vit_b")
+        predictor = self.sam_vit_b
         predictor.set_image(image)
         centers = np.array([a for a,b in selected_points ])
         point_coords = centers
@@ -190,7 +175,7 @@ class Segment_Serious_Models():
         image_pil = Image.fromarray(input_image)
         image = input_image
         H,W,_ = image.shape
-        predictor = self.get_model("sam_vit_b")
+        predictor = self.sam_vit_b
         predictor.set_image(image)
         centers = np.array([a for a,b in selected_points ])
         point_coords = centers
@@ -216,7 +201,7 @@ class Segment_Serious_Models():
         image_pil = Image.fromarray(input_image)
         image = input_image
         H,W,_ = image.shape
-        predictor = self.get_model("sam_vit_h")
+        predictor = self.sam_vit_h
         predictor.set_image(image)
         centers = np.array([a for a,b in selected_points ])
         point_coords = centers
@@ -241,7 +226,7 @@ class Segment_Serious_Models():
         image_pil = Image.fromarray(input_image)
         image = input_image
         H,W,_ = image.shape
-        predictor = self.get_model("sam_hq_vit_l")
+        predictor = self.sam_hq_vit_l
         predictor.set_image(image)
         centers = np.array([a for a,b in selected_points ])
         point_coords = centers
@@ -266,7 +251,7 @@ class Segment_Serious_Models():
         image_pil = Image.fromarray(input_image)
         image = input_image
         H,W,_ = image.shape
-        predictor = self.get_model("sam_hq_vit_h")
+        predictor = self.sam_hq_vit_h
         predictor.set_image(image)
         centers = np.array([a for a,b in selected_points ])
         point_coords = centers
@@ -289,7 +274,7 @@ class Segment_Serious_Models():
 
     def run_fast_sam(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
-        predictor = self.get_model("fast_sam")
+        predictor = self.fast_sam
         H,W = image_pil.size
         if hasattr(self, "fast_sam_device"):
             device=self.fast_sam_device
