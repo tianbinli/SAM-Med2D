@@ -16,7 +16,8 @@ from argparse import Namespace
 from run_old import *
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
-
+for model_name in ["sam_med2d_b", "sam_vit_b", "sam_vit_l", "fast_sam", "sam_hq_vit_l"]:
+    download_models(model_name)
 # points color and marker
 colors = [(255, 0, 0), (0, 255, 0)]
 markers = [1, 5]

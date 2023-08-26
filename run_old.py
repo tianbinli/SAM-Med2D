@@ -65,8 +65,7 @@ def download_models(key):
         print("downloading model : " + model_path)
         download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
         shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
-for model_name in ["sam_med2d_b", "sam_vit_b", "sam_vit_l", "fast_sam", "sam_hq_vit_l"]:
-    download_models(model_name)
+
 def draw_mask(mask, draw, random_color=False):
     if random_color:
         color = (random.randint(0, 255), random.randint(
