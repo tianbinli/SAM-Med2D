@@ -49,7 +49,7 @@ import traceback
 import shutil
 
 model_name_dict = {
-    "sam_med2d_b": "FastSAM-x.pt", 
+    "sam_med2d_b": "sam-med2d_b.pth", 
     "sam_vit_b": 'sam_vit_b_01ec64.pth', 
     "sam_vit_h": 'sam_vit_h_4b8939.pth', 
     "sam_vit_l": 'sam_vit_l_0b3195.pth', 
