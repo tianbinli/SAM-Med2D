@@ -1,3 +1,5 @@
+-r FastSAM/requirements.txt
+git+https://github.com/CASIA-IVA-Lab/FastSAM.git
 albumentations
 gradio==3.40.1
 opencv-python
@@ -6,5 +8,3 @@ cchardet
 git+https://github.com/openai/CLIP.git
 segment_anything
 openxlab
--r FastSAM/requirements.txt
-git+https://github.com/CASIA-IVA-Lab/FastSAM.git
