@@ -138,7 +138,7 @@ class Segment_Serious_Models():
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
 
-        draw_point(point_labels,image_draw)
+        draw_point(selected_points, image_draw)
 
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
@@ -166,7 +166,7 @@ class Segment_Serious_Models():
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
-        draw_point(point_coords,image_draw)
+        draw_point(selected_points,image_draw)
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
@@ -191,7 +191,7 @@ class Segment_Serious_Models():
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
-        draw_point(point_coords,image_draw)
+        draw_point(selected_points,image_draw)
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
@@ -217,7 +217,7 @@ class Segment_Serious_Models():
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
-        draw_point(point_coords,image_draw)
+        draw_point(selected_points,image_draw)
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
@@ -242,7 +242,7 @@ class Segment_Serious_Models():
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
-        draw_point(point_coords,image_draw)
+        draw_point(selected_points,image_draw)
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
@@ -267,7 +267,7 @@ class Segment_Serious_Models():
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
-        draw_point(point_coords,image_draw)
+        draw_point(selected_points,image_draw)
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
@@ -307,7 +307,7 @@ class Segment_Serious_Models():
         for mask in annotations:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
-        draw_point(point_coords,image_draw)
+        draw_point(selected_points,image_draw)
         image_pil = image_pil.convert('RGBA')
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
