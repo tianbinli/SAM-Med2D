@@ -62,9 +62,9 @@ def download_models(key):
     os.makedirs(model_pretrain_root, exist_ok=True)
     model_path = model_name_dict[key]
     if not os.path.exists(os.path.join(model_pretrain_root, model_path)):
-        print("downloading model : " + model_path)
-        download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
-        shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
+        os.system("cd /home/xlab-app-center/pretrain_model/ && wget https://download.openxlab.org.cn/models/litianbin/SAM-Med2D/weight/" + model_path)
+        # download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
+        # shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
 
 def draw_mask(mask, draw, random_color=False):
     if random_color:
@@ -109,7 +109,7 @@ class Segment_Serious_Models():
 
 
     def get_model(self, model_name):
-        if not hasattr(self, model_name):
+        if not hasattr(self, model_name) or getattr(self, model_name) is None:
             download_models(model_name)
             model_path = os.path.join(model_pretrain_root, model_name_dict[model_name])
             if model_name == "sam_med2d_b":
