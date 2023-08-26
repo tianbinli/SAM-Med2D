@@ -107,11 +107,11 @@ class Segment_Serious_Models():
         self.fast_sam_device=device1
         self.sam_med2d_b = load_model(256, True, "vit_b", os.path.join(model_pretrain_root, model_name_dict["sam_med2d_b"]), self.device1)
         self.sam_vit_b = load_model(1024, False, 'vit_b', os.path.join(model_pretrain_root, model_name_dict["sam_vit_b"]), self.device1)
-        self.sam_vit_l = load_model(1024, False, 'vit_l', os.path.join(model_pretrain_root, model_name_dict["sam_vit_l"]), self.device1)
-        # self.sam_vit_h = load_model(1024, False, 'vit_h', os.path.join(model_pretrain_root, model_name_dict["sam_vit_h"]), self.device1)
-        self.fast_sam = FastSAM(os.path.join(model_pretrain_root, model_name_dict["sam_med2d_b"]))
-        self.sam_hq_vit_l = load_model(1024, False, "vit_l", os.path.join(model_pretrain_root, model_name_dict["sam_hq_vit_l"]), self.device0)
-        # self.sam_hq_vit_h = load_model(1024, False, "vit_h", os.path.join(model_pretrain_root, model_name_dict["sam_hq_vit_h"]), self.device0)
+        # self.sam_vit_l = load_model(1024, False, 'vit_l', os.path.join(model_pretrain_root, model_name_dict["sam_vit_l"]), self.device1)
+        self.sam_vit_h = load_model(1024, False, 'vit_h', os.path.join(model_pretrain_root, model_name_dict["sam_vit_h"]), self.device1)
+        self.fast_sam = FastSAM(os.path.join(model_pretrain_root, model_name_dict["fast_sam"]))
+        # self.sam_hq_vit_l = load_model(1024, False, "vit_l", os.path.join(model_pretrain_root, model_name_dict["sam_hq_vit_l"]), self.device0)
+        self.sam_hq_vit_h = load_model(1024, False, "vit_h", os.path.join(model_pretrain_root, model_name_dict["sam_hq_vit_h"]), self.device0)
 
 
 
