@@ -5,6 +5,7 @@ root_path = "/home/xlab-app-center/"
 model_pretrain_root = "/home/xlab-app-center/pretrain_model/"
 
 subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
+from fastsam import FastSAM, FastSAMPrompt 
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -96,7 +97,6 @@ class Segment_Serious_Models():
             elif model_name == "sam_vit_h":
                 self.sam_vit_h = load_model(1024, False, 'vit_h', model_path, self.device1)
             elif model_name == "fast_sam":
-                from fastsam import FastSAM, FastSAMPrompt 
                 self.fast_sam = FastSAM(model_path)
             elif model_name == "sam_hq_vit_l":
                 self.sam_hq_vit_l = load_model(1024, False, "vit_l", model_path, self.device0)

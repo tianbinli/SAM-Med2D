@@ -1,8 +1,5 @@
 import os
 import subprocess
-os.system("cd /home/xlab-app-center/FastSAM/ && ls")
-subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
-
 import gradio as gr
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
