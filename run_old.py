@@ -1,6 +1,6 @@
 import os
 import subprocess
-'):
+def print_directory(folder_path, indent='', file_path=''):
     # 打印当前目录名称
     print(indent + os.path.basename(folder_path) + '/')
     
