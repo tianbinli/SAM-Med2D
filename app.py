@@ -142,11 +142,11 @@ with gr.Blocks() as demo:
                 cv2.drawMarker(temp, point, colors[label], markerType=markers[label], markerSize=20, thickness=5)
         if temp[..., 0][0, 0] == temp[..., 2][0, 0]:  # BGR to RGB
             temp = cv2.cvtColor(temp, cv2.COLOR_BGR2RGB)
-        return temp if isinstance(temp, np.ndarray) else np.array(temp)
+        return temp, None if isinstance(temp, np.ndarray) else np.array(temp), None
     undo_button.click(
         undo_points,
         [original_image, selected_points],
-        [input_image]
+        [input_image, last_mask]
     )
     segment_models = Segment_Serious_Models()
     # button image
