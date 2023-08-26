@@ -109,7 +109,7 @@ class Segment_Serious_Models():
 
 
     def get_model(self, model_name):
-        if not hasattr(self, model_name) or if getattr(self, model_name) is None:
+        if not hasattr(self, model_name) or getattr(self, model_name) is None:
             download_models(model_name)
             model_path = os.path.join(model_pretrain_root, model_name_dict[model_name])
             if model_name == "sam_med2d_b":
