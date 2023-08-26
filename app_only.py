@@ -19,6 +19,7 @@ from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
 for model_name in ["sam_med2d_b"]:
     download_models(model_name)
+print(os.listdir("/home/xlab-app-center/pretrain_model/"))
 # points color and marker
 colors = [(255, 0, 0), (0, 255, 0)]
 markers = [1, 5]
