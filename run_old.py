@@ -132,7 +132,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
 
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
@@ -161,7 +161,7 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W,H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
@@ -186,7 +186,7 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
@@ -212,7 +212,7 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
@@ -237,7 +237,7 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
@@ -262,7 +262,7 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
@@ -302,7 +302,7 @@ class Segment_Serious_Models():
             annotations = annotations.cpu().numpy()
         # if isinstance(annotations[0], np.ndarray):
         #         annotations = torch.from_numpy(annotations)
-        mask_image = Image.new('RGBA', (H,W), color=(0, 0, 0, 0))
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in annotations:
             draw_mask(mask, mask_draw, random_color=False)
