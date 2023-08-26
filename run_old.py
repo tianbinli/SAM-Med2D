@@ -3,7 +3,9 @@ import subprocess
 
 root_path = "/home/xlab-app-center/"
 model_pretrain_root = "/home/xlab-app-center/pretrain_model/"
+
 subprocess.run("cd /home/xlab-app-center/FastSAM/ && pip install -e .", shell=True)
+
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
@@ -32,14 +34,12 @@ try:
 except Exception as e:
     traceback.print_exc()
 def download_models(key):
-    try:
-        os.makedirs(model_pretrain_root, exist_ok=True)
-        model_path = model_name_dict[key]
-        if not os.path.exists(os.path.join(model_pretrain_root, model_path)):
-            download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
-            shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
-    except Exception as e:
-        traceback.print_exc()
+    os.makedirs(model_pretrain_root, exist_ok=True)
+    model_path = model_name_dict[key]
+    if not os.path.exists(os.path.join(model_pretrain_root, model_path)):
+        print("downloading model : " + model_path)
+        download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
+        shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
 
 def draw_mask(mask, draw, random_color=False):
     if random_color:
