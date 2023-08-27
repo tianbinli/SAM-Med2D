@@ -38,7 +38,7 @@ with gr.Blocks() as demo:
         )
         with gr.Row():
             # select model
-            model_type = gr.Dropdown(["SAM-Med2D_base" ], value='SAM-Med2D_base', label="Select Model")
+            model_type = gr.Dropdown(["SAM-Med2D_B" ], value='SAM-Med2D_B', label="Select Model")
             # select compare model
     # Segment image
     with gr.Tab(label='Image'):
