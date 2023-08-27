@@ -36,13 +36,13 @@ with gr.Blocks() as demo:
             Currently, only multi-point interaction is supported in this application. More information can be found on [**GitHub**](https://github.com/uni-medical/SAM-Med2D/tree/main).
             '''
         )
-        # with gr.Row():
-        #     # select model
-        #     model_type = gr.Dropdown(["SAM-Med2D_B" ], value='SAM-Med2D_B', label="Select Model")
-        #     # select compare model
+        with gr.Row():
+            # select model
+            model_type = gr.Dropdown(["SAM-Med2D-B" ], value='SAM-Med2D-B', label="Select Model")
+            # select compare model
     # Segment image
-    with gr.Row().style(equal_height=True):
-        with gr.Tab(label='Image'):
+    with gr.Tab(label='Image'):
+        with gr.Row().style(equal_height=True):
             with gr.Column():
                 # input image
                 original_image = gr.State(value=None)   # store original image without points, default None
@@ -56,28 +56,23 @@ with gr.Blocks() as demo:
                         undo_button = gr.Button('Undo point')
                     radio = gr.Radio(['foreground_point', 'background_point'], label='point labels')
                 button = gr.Button("Run!")
-        with gr.Tab(label='SAM-MED2D-B Generated images'):
             # show the image with mask
             gallery_sammed = gr.Gallery(
-                label="SAM-MED2D-B Generated images", show_label=False, elem_id="gallery_sammed").style(preview=True, grid_cols=2,object_fit="scale-down")
-    with gr.Row().style(equal_height=True):
-        with gr.Tab(label='SAM-B Generated images'):
-            with gr.Column():
-                gallery_sam_b = gr.Gallery(
-                    label="SAM-B Generated images", show_label=False, elem_id="gallery_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
-        with gr.Tab(label='SAM-L Generated images'):
-            with gr.Column():
-                gallery_sam_l = gr.Gallery(
-                    label="SAM-L Generated images", show_label=False, elem_id="gallery_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
-    with gr.Row().style(equal_height=True):
-        with gr.Tab(label='HQ-SAM-L Generated images'):
-            with gr.Column():
-                gallery_hq_sam_l = gr.Gallery(
-                    label="HQ-SAM-L Generated images", show_label=False, elem_id="gallery_hq_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
-        with gr.Tab(label='Fast-SAM-B Generated images'):
-            with gr.Column():
-                gallery_fast_sam = gr.Gallery(
-                    label="Fast-SAM-B Generated images", show_label=False, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
+                label="SAM-MED2D-B Generated images", show_label=True, elem_id="gallery_sammed").style(preview=True, grid_cols=2,object_fit="scale-down")
+    with gr.Row():
+        with gr.Column():
+            gallery_sam_b = gr.Gallery(
+                label="SAM-B Generated images", show_label=True, elem_id="gallery_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
+        with gr.Column():
+            gallery_sam_l = gr.Gallery(
+                label="SAM-L Generated images", show_label=True, elem_id="gallery_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
+    with gr.Row():
+        with gr.Column():
+            gallery_hq_sam_l = gr.Gallery(
+                label="HQ-SAM-L Generated images", show_label=True, elem_id="gallery_hq_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
+        with gr.Column():
+            gallery_fast_sam = gr.Gallery(
+                label="Fast-SAM-B Generated images", show_label=True, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
     def process_example(img):
         return img, [], None
     
