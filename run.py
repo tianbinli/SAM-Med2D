@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
 from scipy import ndimage
-from fastsam import FastSAM, FastSAMPrompt 
+from FastSAM.fastsam import FastSAM, FastSAMPrompt 
  #torch.device("cuda" if torch.cuda.is_available() else "cpu")
 import torch
 import random
