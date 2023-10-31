@@ -63,7 +63,7 @@ def download_models(key):
     model_path = model_name_dict[key]
     if not os.path.exists(os.path.join(model_pretrain_root, model_path)):
         print("downloading model : " + model_path)
-        download(model_repo='litianbin/SAM-Med2D', model_name=model_path)
+        download(model_repo='GMAI/SAM-Med2D', model_name=model_path)
         shutil.move(os.path.join(root_path, model_path), model_pretrain_root)
 
 def draw_mask(mask, draw, random_color=False):
