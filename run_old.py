@@ -55,7 +55,7 @@ model_name_dict = {
     "sam_vit_l": 'sam_vit_l_0b3195.pth', 
     "fast_sam": 'FastSAM-x.pt', 
     "sam_hq_vit_l": 'sam_hq_vit_l.pth', 
-    "sam_hq_vit_h": 'sam_hq_vit_h.pth'
+    "sam_hq_vit_b": 'sam_hq_vit_b.pth'
     }
 openxlab.login(ak="k76vxnebvv058mggrmz1", sk="ygne5jobler7a4z0v3ddvxm91dwk8vzmg32obqnv", re_login=True)
 def download_models(key):
