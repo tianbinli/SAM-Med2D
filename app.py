@@ -16,7 +16,7 @@ from argparse import Namespace
 from run_old import *
 from segment_anything.predictor_sammed import SammedPredictor
 from segment_anything import sam_model_registry
-for model_name in ["sam_med2d_b", "sam_vit_b", "sam_vit_l", "fast_sam", "sam_hq_vit_l",]:
+for model_name in ["sam_med2d_b", "sam_vit_b", "sam_vit_l", "fast_sam", "sam_hq_vit_b",]:
     download_models(model_name)
 print(os.listdir("/home/xlab-app-center/pretrain_model/"))
 # points color and marker
@@ -68,8 +68,8 @@ with gr.Blocks() as demo:
                 label="SAM-L Generated images", show_label=True, elem_id="gallery_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
     with gr.Row():
         with gr.Column():
-            gallery_hq_sam_l = gr.Gallery(
-                label="HQ-SAM-L Generated images", show_label=True, elem_id="gallery_hq_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
+            gallery_hq_sam_b = gr.Gallery(
+                label="HQ-SAM-B Generated images", show_label=True, elem_id="gallery_hq_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
         with gr.Column():
             gallery_fast_sam = gr.Gallery(
                 label="Fast-SAM-B Generated images", show_label=True, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
@@ -154,7 +154,7 @@ with gr.Blocks() as demo:
                  outputs=[gallery_sammed, last_mask])\
     .then(fn=segment_models.run_sam_b, inputs=[original_image, selected_points], outputs=gallery_sam_b)\
     .then(fn=segment_models.run_sam_l, inputs=[original_image, selected_points], outputs=gallery_sam_l)\
-    .then(fn=segment_models.run_hq_sam_l, inputs=[original_image, selected_points], outputs=gallery_hq_sam_l)\
+    .then(fn=segment_models.run_hq_sam_b, inputs=[original_image, selected_points], outputs=gallery_hq_sam_b)\
     .then(fn=segment_models.run_fast_sam, inputs=[original_image, selected_points], outputs=gallery_fast_sam)\
     # .then(fn=segment_models.run_hq_sam, inputs=[original_image, selected_points], outputs=gallery_hq_sam)\
     # .then(fn=segment_models.run_sam_h, inputs=[original_image, selected_points], outputs=gallery_sam_h)\
