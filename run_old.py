@@ -272,6 +272,31 @@ class Segment_Serious_Models():
         image_pil.alpha_composite(mask_image)
         return [image_pil, mask_image]
 
+    
+    def run_hq_sam_b(self, input_image, selected_points):
+        image_pil = Image.fromarray(input_image)
+        image = input_image
+        H,W,_ = image.shape
+        predictor = self.sam_hq_vit_b
+        predictor.set_image(image)
+        centers = np.array([a for a,b in selected_points ])
+        point_coords = centers
+        point_labels = np.array([b for a,b in selected_points ])
+
+        masks, _, _ = predictor.predict(
+        point_coords=point_coords,
+        point_labels=point_labels,
+        multimask_output=True 
+        ) 
+        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
+        mask_draw = ImageDraw.Draw(mask_image)
+        for mask in masks:
+            draw_mask(mask, mask_draw, random_color=False)
+        image_draw = ImageDraw.Draw(image_pil)
+        draw_point(selected_points,image_draw)
+        image_pil = image_pil.convert('RGBA')
+        image_pil.alpha_composite(mask_image)
+        return [image_pil, mask_image]
     def run_fast_sam(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
         predictor = self.fast_sam
