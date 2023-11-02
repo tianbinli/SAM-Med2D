@@ -168,7 +168,7 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_1 = image_pil.convert('RGBA')
-        image_pil_1.alpha_composite(mask_image)
+        image_pil_1.alpha_composite(mask_image_1)
         return [image_pil_1, mask_image_1]
 
     def run_sam_l(self, input_image, selected_points):
@@ -193,8 +193,8 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_2 = image_pil.convert('RGBA')
-        image_pil_2.alpha_composite(mask_image)
-        return [image_pil, mask_image_2]
+        image_pil_2.alpha_composite(mask_image_2)
+        return [image_pil_2, mask_image_2]
 
 
     def run_sam_h(self, input_image, selected_points):
@@ -219,7 +219,7 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_3 = image_pil.convert('RGBA')
-        image_pil_3.alpha_composite(mask_image)
+        image_pil_3.alpha_composite(mask_image_3)
         return [image_pil_3, mask_image_3]
 
     def run_hq_sam_l(self, input_image, selected_points):
@@ -244,7 +244,7 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_4 = image_pil.convert('RGBA')
-        image_pil_4.alpha_composite(mask_image)
+        image_pil_4.alpha_composite(mask_image_4)
         return [image_pil_4, mask_image_4]
 
     def run_hq_sam_h(self, input_image, selected_points):
@@ -269,7 +269,7 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_5 = image_pil.convert('RGBA')
-        image_pil_5.alpha_composite(mask_image)
+        image_pil_5.alpha_composite(mask_image_5)
         return [image_pil_5, mask_image_5]
 
     
@@ -295,7 +295,7 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_6 = image_pil.convert('RGBA')
-        image_pil_6.alpha_composite(mask_image)
+        image_pil_6.alpha_composite(mask_image_6)
         return [image_pil_6, mask_image_6]
     def run_fast_sam(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
@@ -334,7 +334,7 @@ class Segment_Serious_Models():
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
         image_pil_7 = image_pil.convert('RGBA')
-        image_pil_7.alpha_composite(mask_image)
+        image_pil_7.alpha_composite(mask_image_7)
         return [image_pil_7, mask_image_7]
 
 
