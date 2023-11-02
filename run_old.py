@@ -161,15 +161,15 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (W,H), color=(0, 0, 0, 0))
+        mask_image_1 = Image.new('RGBA', (W,H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_1 = image_pil.convert('RGBA')
+        image_pil_1.alpha_composite(mask_image)
+        return [image_pil_1, mask_image_1]
 
     def run_sam_l(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
@@ -186,15 +186,15 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
+        mask_image_2 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_2 = image_pil.convert('RGBA')
+        image_pil_2.alpha_composite(mask_image)
+        return [image_pil, mask_image_2]
 
 
     def run_sam_h(self, input_image, selected_points):
@@ -212,15 +212,15 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
+        mask_image_3 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_3 = image_pil.convert('RGBA')
+        image_pil_3.alpha_composite(mask_image)
+        return [image_pil_3, mask_image_3]
 
     def run_hq_sam_l(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
@@ -237,15 +237,15 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
+        mask_image_4 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_4 = image_pil.convert('RGBA')
+        image_pil_4.alpha_composite(mask_image)
+        return [image_pil_4, mask_image_4]
 
     def run_hq_sam_h(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
@@ -262,15 +262,15 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
+        mask_image_5 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_5 = image_pil.convert('RGBA')
+        image_pil_5.alpha_composite(mask_image)
+        return [image_pil_5, mask_image_5]
 
     
     def run_hq_sam_b(self, input_image, selected_points):
@@ -288,15 +288,15 @@ class Segment_Serious_Models():
         point_labels=point_labels,
         multimask_output=True 
         ) 
-        mask_image = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
+        mask_image_6 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_6 = image_pil.convert('RGBA')
+        image_pil_6.alpha_composite(mask_image)
+        return [image_pil_6, mask_image_6]
     def run_fast_sam(self, input_image, selected_points):
         image_pil = Image.fromarray(input_image)
         predictor = self.fast_sam
@@ -327,14 +327,14 @@ class Segment_Serious_Models():
             annotations = annotations.cpu().numpy()
         # if isinstance(annotations[0], np.ndarray):
         #         annotations = torch.from_numpy(annotations)
-        mask_image = Image.new('RGBA', (H, W), color=(0, 0, 0, 0))
+        mask_image_7 = Image.new('RGBA', (H, W), color=(0, 0, 0, 0))
         mask_draw = ImageDraw.Draw(mask_image)
         for mask in annotations:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
         draw_point(selected_points,image_draw)
-        image_pil = image_pil.convert('RGBA')
-        image_pil.alpha_composite(mask_image)
-        return [image_pil, mask_image]
+        image_pil_7 = image_pil.convert('RGBA')
+        image_pil_7.alpha_composite(mask_image)
+        return [image_pil_7, mask_image_7]
 
 
