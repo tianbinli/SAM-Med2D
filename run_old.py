@@ -162,7 +162,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
         mask_image_1 = Image.new('RGBA', (W,H), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_1)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
@@ -187,7 +187,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
         mask_image_2 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_2)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
@@ -213,7 +213,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
         mask_image_3 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_3)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
@@ -238,7 +238,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
         mask_image_4 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_4)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
@@ -263,7 +263,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
         mask_image_5 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_5)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
@@ -289,7 +289,7 @@ class Segment_Serious_Models():
         multimask_output=True 
         ) 
         mask_image_6 = Image.new('RGBA', (W, H), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_6)
         for mask in masks:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
@@ -328,7 +328,7 @@ class Segment_Serious_Models():
         # if isinstance(annotations[0], np.ndarray):
         #         annotations = torch.from_numpy(annotations)
         mask_image_7 = Image.new('RGBA', (H, W), color=(0, 0, 0, 0))
-        mask_draw = ImageDraw.Draw(mask_image)
+        mask_draw = ImageDraw.Draw(mask_image_7)
         for mask in annotations:
             draw_mask(mask, mask_draw, random_color=False)
         image_draw = ImageDraw.Draw(image_pil)
