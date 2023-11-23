@@ -70,7 +70,7 @@ with gr.Blocks() as demo:
         # with gr.Column():
         #     gallery_hq_sam_b = gr.Gallery(
         #         label="HQ-SAM-B Generated images", show_label=True, elem_id="gallery_hq_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
-        with gr.Column():
+        with gr.Column(width="50%"):
             gallery_fast_sam = gr.Gallery(
                 label="Fast-SAM-B Generated images", show_label=True, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
     def process_example(img):
