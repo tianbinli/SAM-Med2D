@@ -67,9 +67,9 @@ with gr.Blocks() as demo:
             gallery_sam_l = gr.Gallery(
                 label="SAM-L Generated images", show_label=True, elem_id="gallery_sam_l").style(preview=True, grid_cols=2,object_fit="scale-down")
     with gr.Row():
-        with gr.Column():
-            gallery_hq_sam_b = gr.Gallery(
-                label="HQ-SAM-B Generated images", show_label=True, elem_id="gallery_hq_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
+        # with gr.Column():
+        #     gallery_hq_sam_b = gr.Gallery(
+        #         label="HQ-SAM-B Generated images", show_label=True, elem_id="gallery_hq_sam_b").style(preview=True, grid_cols=2,object_fit="scale-down")
         with gr.Column():
             gallery_fast_sam = gr.Gallery(
                 label="Fast-SAM-B Generated images", show_label=True, elem_id="gallery_fast_sam").style(preview=True, grid_cols=2,object_fit="scale-down")
@@ -154,7 +154,7 @@ with gr.Blocks() as demo:
                  outputs=[gallery_sammed, last_mask])\
     .then(fn=segment_models.run_sam_b, inputs=[original_image, selected_points], outputs=gallery_sam_b)\
     .then(fn=segment_models.run_sam_l, inputs=[original_image, selected_points], outputs=gallery_sam_l)\
-    .then(fn=segment_models.run_hq_sam_b, inputs=[original_image, selected_points], outputs=gallery_hq_sam_b)\
+    #.then(fn=segment_models.run_hq_sam_b, inputs=[original_image, selected_points], outputs=gallery_hq_sam_b)\
     .then(fn=segment_models.run_fast_sam, inputs=[original_image, selected_points], outputs=gallery_fast_sam)\
     # .then(fn=segment_models.run_hq_sam, inputs=[original_image, selected_points], outputs=gallery_hq_sam)\
     # .then(fn=segment_models.run_sam_h, inputs=[original_image, selected_points], outputs=gallery_sam_h)\
