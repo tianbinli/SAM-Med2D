@@ -154,8 +154,8 @@ with gr.Blocks() as demo:
                  outputs=[gallery_sammed, last_mask])\
     .then(fn=segment_models.run_sam_b, inputs=[original_image, selected_points], outputs=gallery_sam_b)\
     .then(fn=segment_models.run_sam_l, inputs=[original_image, selected_points], outputs=gallery_sam_l)\
-    #.then(fn=segment_models.run_hq_sam_b, inputs=[original_image, selected_points], outputs=gallery_hq_sam_b)\
     .then(fn=segment_models.run_fast_sam, inputs=[original_image, selected_points], outputs=gallery_fast_sam)\
+    #.then(fn=segment_models.run_hq_sam_b, inputs=[original_image, selected_points], outputs=gallery_hq_sam_b)\
     # .then(fn=segment_models.run_hq_sam, inputs=[original_image, selected_points], outputs=gallery_hq_sam)\
     # .then(fn=segment_models.run_sam_h, inputs=[original_image, selected_points], outputs=gallery_sam_h)\
 
